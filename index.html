@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
 
     <link
       rel="icon"
@@ -11,12 +10,10 @@
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-
     <title>Frontend Mentor | IP Address Tracker | shantam8</title>
 
     <link rel="stylesheet" href="./css/main.css" />
-    <script src="./js/main.js" defer></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -28,15 +25,51 @@
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""
     ></script>
+    <script src="./js/main.js" defer></script>
   </head>
   <body>
     <div class="bgHelper">
       <header>
         <h1>IP Address Tracker</h1>
-        <div class="inputBox">
-          <input type="text" placeholder="IP address or domain" />
-          <button type="button">
+        <form class="inputForm" action="#" method="get">
+          <input
+            id="inputField"
+            type="text"
+            placeholder="IP address or domain"
+          />
+          <button id="btnSubmit" type="submit">
             <svg
+              id="btnIcon-2"
+              xmlns="http://www.w3.org/2000/svg"
+              width="11"
+              height="14"
+              viewBox="0 0 11 14"
+            >
+              <path
+                fill="none"
+                stroke="#c7c7c7"
+                stroke-width="3"
+                d="M2 1l6 6-6 6"
+              />
+            </svg>
+
+            <svg
+              id="btnIcon-1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="11"
+              height="14"
+              viewBox="0 0 11 14"
+            >
+              <path
+                fill="none"
+                stroke="#aeaeae"
+                stroke-width="3"
+                d="M2 1l6 6-6 6"
+              />
+            </svg>
+
+            <svg
+              id="btnIcon"
               xmlns="http://www.w3.org/2000/svg"
               width="11"
               height="14"
@@ -50,28 +83,29 @@
               />
             </svg>
           </button>
-        </div>
+        </form>
+        <p id="errorMsgP">Could not find Target.</p>
       </header>
 
       <main>
         <div class="infoContainer">
           <div class="infoBlock">
             <p class="title">IP Address</p>
-            <p id="addressField" class="fetchedInfo">123544dfgfdsgd fgABDSDFSDF</p>
+            <p id="addressField" class="fetchedInfo">- - -</p>
           </div>
           <div class="infoBlock">
             <p class="title">Location</p>
-            <p id="locationField" class="fetchedInfo">123ABDSDFSDF</p>
+            <p id="locationField" class="fetchedInfo">- - -</p>
           </div>
 
           <div class="infoBlock">
             <p class="title">Timezone</p>
-            <p id="timezoneField" class="fetchedInfo">123ABDSDFSDF</p>
+            <p id="timezoneField" class="fetchedInfo">- - -</p>
           </div>
 
           <div class="infoBlock">
             <p class="title">ISP</p>
-            <p id="ispField" class="fetchedInfo">123ABDSDFSDF</p>
+            <p id="ispField" class="fetchedInfo">- - -</p>
           </div>
         </div>
       </main>
