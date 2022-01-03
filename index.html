@@ -1,34 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | IP Address Tracker</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | IP Address Tracker | shantam8</title>
 
-  IP Address Tracker
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/main.js" defer></script>
 
-  Search for any IP address or domain
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+  </head>
+  <body>
+    <div class="bgHelper">
+      <header>
+        <h1>IP Address Tracker</h1>
+        <div class="inputBox">
+          <input type="text" placeholder="IP address or domain" />
+          <button type="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="11"
+              height="14"
+              viewBox="0 0 11 14"
+            >
+              <path
+                fill="none"
+                stroke="#FFF"
+                stroke-width="3"
+                d="M2 1l6 6-6 6"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
 
-  IP Address
-  Location
-  Timezone
-    UTC <!-- add offset value dynamically using the API -->
-  ISP
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+      <main>
+        <div class="infoContainer">
+          <div class="infoBlock">
+            <p class="title">IP Address</p>
+            <p id="addressField" class="fetchedInfo">123544dfgfdsgd fgABDSDFSDF</p>
+          </div>
+          <div class="infoBlock">
+            <p class="title">Location</p>
+            <p id="locationField" class="fetchedInfo">123ABDSDFSDF</p>
+          </div>
+
+          <div class="infoBlock">
+            <p class="title">Timezone</p>
+            <p id="timezoneField" class="fetchedInfo">123ABDSDFSDF</p>
+          </div>
+
+          <div class="infoBlock">
+            <p class="title">ISP</p>
+            <p id="ispField" class="fetchedInfo">123ABDSDFSDF</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="background"></div>
+    <div id="map"></div>
+  </body>
 </html>
