@@ -45,10 +45,14 @@ function setError(err) {
   inputForm.classList.remove("spinner");
   inputField.classList.add("error");
   errorMsgP.classList.add("error");
+  console.log("error: " + err)
 }
 
 function formSubmitHandler() {
   let inputValue = inputField.value;
+  if(inputValue == ""){
+      return;
+  }
   inputField.classList.remove("error");
   errorMsgP.classList.remove("error");
   inputForm.classList.add("spinner");
