@@ -122,6 +122,7 @@ function init() {
   initMap();
   getStartLocation();
   inputForm.addEventListener("submit", formSubmitHandler);
+  inputField.focus();
 }
 
 window.onload = init();
