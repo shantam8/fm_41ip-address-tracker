@@ -9,6 +9,7 @@ let ispField = document.querySelector("#ispField");
 
 let map;
 let myMapMarker;
+let mapCreated = false;
 
 let regexIP =
   /\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9])\.){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b/;
@@ -24,7 +25,13 @@ function dataFieldHandler(response) {
     response.data.location.timezone,
     response.data.isp
   );
-  setMap(response.data.location.lat, response.data.location.lng);
+
+  if (mapCreated) {
+    setMap(response.data.location.lat, response.data.location.lng);
+  } else {
+    initMap(response.data.location.lat, response.data.location.lng);
+    mapCreated = true;
+  }
 }
 
 function setDataFields(ipAddress, city, region, postalcode, zone, isp) {
@@ -45,13 +52,13 @@ function setError(err) {
   inputForm.classList.remove("spinner");
   inputField.classList.add("error");
   errorMsgP.classList.add("error");
-  console.log("error: " + err)
+  console.log("error: " + err);
 }
 
 function formSubmitHandler() {
   let inputValue = inputField.value;
-  if(inputValue == ""){
-      return;
+  if (inputValue == "") {
+    return;
   }
   inputField.classList.remove("error");
   errorMsgP.classList.remove("error");
@@ -73,15 +80,15 @@ function formSubmitHandler() {
   }, 2000);
 }
 
-function initMap() {
+function initMap(lat, lng) {
   let myMapIcon = L.icon({
     iconUrl: "images/icon-location.svg",
     iconAnchor: [23, 56],
   });
 
   map = L.map("map", {
-    center: [51.505, -0.09],
-    zoom: 13,
+    center: [lat, lng],
+    zoom: 12,
     attributionControl: false,
     zoomControl: false,
     boxZoom: false,
@@ -94,7 +101,7 @@ function initMap() {
       '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
 
-  myMapMarker = L.marker([51.505, -0.09], { icon: myMapIcon }).addTo(map);
+  myMapMarker = L.marker([lat, lng], { icon: myMapIcon }).addTo(map);
 }
 
 function getLocationData(url) {
@@ -123,7 +130,6 @@ function getStartLocation() {
 }
 
 function init() {
-  initMap();
   getStartLocation();
   inputForm.addEventListener("submit", formSubmitHandler);
   inputField.focus();
